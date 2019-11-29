@@ -14,16 +14,24 @@ typedef struct{
 
  imagen abrir_imagen(char *nombre); //prototipo de funcion
  void escribir_imagen(char *nombre, imagen Imagen);//prototipo de funcion
+ imagen calcular_s2(imagen Imagen, int w, int h);//prototipo de funcion
+ imagen filtro(imagen S, int w, int h, int p);
 
 
 //inicio del main
 int main(){
 imagen Imagen;
+imagen S;
+imagen IF;
+
 char *nombre= "test.pgm";//nombre de la imagen que vamos a abrir
-char *nombreg="chango2.pgm";//nombre con el que se guardara
+char *nombreg="test3.pgm";//nombre con el que se guardara
 
 Imagen=abrir_imagen(nombre);
-escribir_imagen(nombreg, Imagen);
+S=calcular_s2(Imagen, Imagen.m, Imagen.n);
+//IF=filtro(S,S.m, S.n,5); //no pude terminar
+
+escribir_imagen(nombreg, S);
 
 //liberar memoria de imagen
     for(int i=0;i<Imagen.m;i++){
@@ -31,6 +39,15 @@ escribir_imagen(nombreg, Imagen);
     }
     free(Imagen.intensidad);
 
+        for(int i=0;i<Imagen.m;i++){
+        free(S.intensidad[i]);
+    }
+    free(S.intensidad);
+
+    /*for(int i=0;i<Imagen.m;i++){
+        free(IF.intensidad[i]);
+    }
+    free(IF.intensidad);*/
     return 0;
 }
 
@@ -170,3 +187,76 @@ escribir_imagen(nombreg, Imagen);
          printf("No es un formato valido");
         }
  }
+
+imagen calcular_s2(imagen Imagen, int w, int h){
+    imagen S;
+    // reservar memoria
+    S.m=w;
+    S.n=h;
+
+    S.intensidad=(int **)malloc(w*sizeof(int*));
+
+    for(int i=0; i<Imagen.m;i++){
+        S.intensidad[i]=(int *)malloc((h)*sizeof(int));
+    }
+
+    for(int i=0; i<w; i++){
+        for(int j=0; j<h; j++){
+            S.intensidad[i][j]=0;
+        }
+    }
+    //inicializar valores de intensidad
+
+    for(int i=0; i<w;i++){
+        for(int k=0; k<i; k++){
+            S.intensidad[i][0]+=Imagen.intensidad[k][0];
+        }
+    }
+    for(int j=0; j<h; j++){
+        for(int l=0; l<j;l++){
+            S.intensidad[0][j]+=Imagen.intensidad[0][j];
+        }
+    }
+
+    //utilizar ecuacion 1 para calcular los demas valores de S
+    for(int i=1; i<w; i++){
+        for(int j=1; j<h; j++){
+         S.intensidad[i][j]=S.intensidad[i-1][j]+S.intensidad[i][j-1]-S.intensidad[i-1][j-1]+Imagen.intensidad[i][j];
+        }
+    }
+
+    S.nmax=Imagen.nmax;
+    S.a=2;
+    S.formato[0]=Imagen.formato[0];
+    S.formato[1]=Imagen.formato[1];
+    S.formato[3]=Imagen.formato[3];
+
+    return S;
+}
+
+imagen filtro(imagen S, int w, int h, int p){
+    imagen IF;
+    IF.m=w;
+    IF.n=h;
+
+    IF.intensidad=(int **)malloc(w*sizeof(int*));
+    for(int i=0; i<w;i++){
+        IF.intensidad[i]=(int *)malloc((h)*sizeof(int));
+    }
+
+    for(int i=p+1; i<w-p; i++){
+        for(int j=p+1; j<h-p; j++){
+            IF.intensidad[i][j]=(1/((2*p+1)*(2*p+1)))*(S.intensidad[i+p][j+p]-S.intensidad[i-p-1][j+p]-S.intensidad[i+p][j-p-1]+S.intensidad[i-p-1][j-p-1]);
+
+        }
+
+    }
+
+    IF.nmax=S.nmax;
+    IF.a=2;
+    IF.formato[0]=S.formato[0];
+    IF.formato[1]=S.formato[1];
+    IF.formato[3]=S.formato[3];
+
+    return IF;
+}

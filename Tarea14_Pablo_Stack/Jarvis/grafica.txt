@@ -1,0 +1,12 @@
+set terminal x11
+set grid
+set title "Marcha de Jarvis"
+set xlabel "x"
+set ylabel "y"
+plot"aleatorios.txt" using 1:2 title"puntos" with points pointtype 20, \
+    "envolvente_jarvis.txt" using 1:2 title"Envolvente" with lines
+set terminal png nocrop enhanced size 1060,920
+set output "Jarvis.png"
+replot
+set terminal x11
+set output

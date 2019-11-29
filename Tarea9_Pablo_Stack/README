@@ -1,0 +1,28 @@
+para compilar Knapsack.c
+
+gcc knapsack.c
+./a.out 7 valor.txt peso.txt
+
+(7) peso total que soporta la mochila
+(valor.txt) archivo con los valores
+(peso.txt) archivo con los pesos
+
+______________________________________________________________
+Para compilar palindromomasgrande.c
+
+gcc palindromasgrande.c
+./a.out 12 programarenc
+
+(12) longitud de la palabra 
+(programarenc) palabra con la que se probará
+
+________________________________________________________________
+
+Para compilar pumasvsamerica.c
+
+gcc pumasvsamerica.c
+./a.out 100 20 3
+
+(100) número total de juegos 
+(20) número de juegos ganados por pumas
+(3) número de juegos ganados por america

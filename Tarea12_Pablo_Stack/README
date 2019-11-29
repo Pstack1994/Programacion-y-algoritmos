@@ -1,0 +1,6 @@
+para compilar y ejecutar: 
+make 
+make run 
+
+
+Se fijó la función a minimizar como 2(x-2)^2 + 4. 

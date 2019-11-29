@@ -1,0 +1,16 @@
+Para Ejecutar: 
+
+abrir arbolrojonegro.c
+
+make
+make run
+
+
+
+Los colores de los nodos son: 
+Negro=0; 
+Rojo=1; 
+
+
+Ejemplo tomado de: https://www.youtube.com/watch?v=UaLIHuR1t8Q 
+minutos: 23:30 - 30:31

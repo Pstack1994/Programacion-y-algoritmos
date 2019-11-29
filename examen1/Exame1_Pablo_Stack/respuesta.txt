@@ -1,0 +1,20 @@
+//respuestas a las preguntas
+
+1)
+    a) Para calcular las sumas para un i,j se requieren 4*h*p^2 sumas
+    b) Para calcular todos los i,j se requieren 4*w*h^2*p^2 sumas
+
+2)
+
+3) No no se podría aplicar a todos los pixeles, aquellos que se encuentren en los limites de la imagen no aplican. Se podría solucionar incrementando la imagen de tamaño y agregando un "marco" de unos.
+1111111111
+1        1
+1        1
+1111111111
+
+4)
+7) 
+
+    a) w*h*4;
+    b) 
+    c) Aumentan la eficiencia, ya que reducen la complejidad del algoritmo.

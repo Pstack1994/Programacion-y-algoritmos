@@ -1,0 +1,5 @@
+Para compilar: 
+g++ tarea_13.cpp
+./a.out
+
+Intenté organizar el código en archivos diferentes pero no alcancé de tiempo :( 

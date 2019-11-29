@@ -1,0 +1,19 @@
+Abrir el archivo: simplificacion_lineas.cpp
+
+
+para compilar: 
+g++ simplificacion_lineas.cpp $(pkg-config --cflags --libs cairo)   
+./a.out slp.txt resultado.txt 3.4e-4  
+
+
+
+el primer paramatro (slp.txt) es el estado que se desea simplificar, se puede cambiar por: 
+* aguascalientes.txt 
+*oaxaca.txt
+*colima.txt
+
+el segundo parametro (reusltado.txt) es el nombre del archivo de texto en donde se guardara el estado simplificado. 
+
+el tercer parametro (3.4e-4) es el valor de tolerancia. 
+
+Se generará una imagen .png con el nombre RESULTADO en donde se mostrarán el estado original en azul y el estado simplificado en rojo

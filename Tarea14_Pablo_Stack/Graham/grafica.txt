@@ -1,0 +1,12 @@
+set terminal x11
+set grid
+set title "Método de Graham"
+set xlabel "x"
+set ylabel "y"
+plot"mano_datos.txt" using 1:2 title"puntos" with points pointtype 20, \
+    "envolvente_Graham.txt" using 1:2 title"Envolvente" with lines linewidth 5
+set terminal png nocrop enhanced size 1060,920
+set output "Graham.png"
+replot
+set terminal x11
+set output
